@@ -1,0 +1,51 @@
+1) we have chnaged the url for getAllPersons to /api/persons
+2) we have updated the path to @GetMapping(path = "/api/person/{person-id}") for API getPersonById
+3)  alter table ride MODIFY start_time datetime;
+4)  alter table ride MODIFY start_time datetime;
+5) Changed the TopDriverDTO  for variables totalRideDurationInSeconds and maxRideDurationInSecods Long to Integer types
+
+
+http://localhost:8080/api/person
+
+{"name" : "Lucky",
+"email" : "Lucky.saladi@gmail.com",
+"registrationNumber" : "ZXD123"
+}
+
+http://localhost:8080/api/ride
+
+{"startTime" : "2018-10-20T13:06:25",
+"endTime" : "2018-10-20T13:16:25",
+"distance" : 10,
+"driver" : {"id" : 2},
+"rider" : {"id" : 3 }
+}
+
+
+TIMESTAMPDIFF(SECOND, '2012-06-06 13:13:55', '2012-06-06 15:20:18')
+
+
+
+	@Query("SELECT " +
+	           "    new com.crossover.techtrial.dto.TopDriverDTO("
+	           + "  EXTRACT(ride.startTime - ride.endTime) as totalRideDurationInSeconds) " 
+			   + "  from Ride ride, Person driver where driver.id=ride.driver " 	           
+			   + "  and ride.startTime >=?1 and ride.endTime <?2")	 
+
+
+			   
+yyyy-MM-dd'T'HH:mm:ss
+
+ @Query("SELECT " +
+           "    new com.crossover.techtrial.dto.TopDriverDTO(driver.name, driver.email) " +
+		   "    from Ride ride, Person driver where driver.id=ride.driver and ride.startTime >=?1 and ride.endTime <?2")		   
+		   
+		   @Query("SELECT " +
+           "    new com.path.to.SurveyAnswerStatistics(v.answer, COUNT(v)) " +
+           "FROM " +
+           "    Survey v " +
+           "GROUP BY " +
+           "    v.answer")
+		   
+@Query("select driver.name,driver.email from Ride ride, Person driver where driver.id=ride.driver and ride.startTime >=?1 and ride.endTime <?2")		   
+select driver.name,driver.email,sum(ride.end_Time - ride.start_Time) from Ride ride, Person driver where driver.id=ride.driver_id group by ride.start_Time,ride.end_Time
